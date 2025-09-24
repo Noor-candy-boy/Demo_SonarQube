@@ -1,0 +1,11 @@
+mvn clean verify sonar:sonar \
+  -Dsonar.projectKey=my-app \
+  -Dsonar.host.url=http://localhost:9000 \
+  -Dsonar.login=your_sonarqube_token
+
+  
+  
+  
+  GitHub link - https://github.com/Noor-candy-boy/Demo_SonarQube.git
+  
+  

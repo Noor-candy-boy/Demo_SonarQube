@@ -17,40 +17,40 @@
       <![CDATA[closeBrowser]]>
     </line>
   </reporter-output>
-  <suite started-at="2025-09-24T09:39:41 IST" name="Surefire suite" finished-at="2025-09-24T09:39:57 IST" duration-ms="16050">
+  <suite started-at="2025-09-24T12:00:14 IST" name="Surefire suite" finished-at="2025-09-24T12:00:23 IST" duration-ms="8616">
     <groups>
     </groups>
-    <test started-at="2025-09-24T09:39:41 IST" name="Surefire test" finished-at="2025-09-24T09:39:57 IST" duration-ms="16050">
+    <test started-at="2025-09-24T12:00:14 IST" name="Surefire test" finished-at="2025-09-24T12:00:23 IST" duration-ms="8616">
       <class name="Demo.AmazonTest">
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:Demo.AmazonTest@2e554a3b]" started-at="2025-09-24T09:39:41 IST" name="openBrowser" finished-at="2025-09-24T09:39:53 IST" duration-ms="11172" status="PASS">
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:Demo.AmazonTest@710b18a6]" started-at="2025-09-24T12:00:14 IST" name="openBrowser" finished-at="2025-09-24T12:00:20 IST" duration-ms="5296" status="PASS">
           <reporter-output>
             <line>
               <![CDATA[openBrowser]]>
             </line>
           </reporter-output>
         </test-method> <!-- openBrowser -->
-        <test-method is-config="true" signature="login()[pri:0, instance:Demo.AmazonTest@2e554a3b]" started-at="2025-09-24T09:39:53 IST" name="login" finished-at="2025-09-24T09:39:53 IST" duration-ms="17" status="PASS">
+        <test-method is-config="true" signature="login()[pri:0, instance:Demo.AmazonTest@710b18a6]" started-at="2025-09-24T12:00:20 IST" name="login" finished-at="2025-09-24T12:00:20 IST" duration-ms="13" status="PASS">
           <reporter-output>
             <line>
               <![CDATA[URL & Login]]>
             </line>
           </reporter-output>
         </test-method> <!-- login -->
-        <test-method signature="amazon()[pri:0, instance:Demo.AmazonTest@2e554a3b]" started-at="2025-09-24T09:39:53 IST" name="amazon" finished-at="2025-09-24T09:39:57 IST" duration-ms="3766" status="PASS">
+        <test-method signature="amazon()[pri:0, instance:Demo.AmazonTest@710b18a6]" started-at="2025-09-24T12:00:20 IST" name="amazon" finished-at="2025-09-24T12:00:22 IST" duration-ms="2404" status="PASS">
           <reporter-output>
             <line>
               <![CDATA[Amazon]]>
             </line>
           </reporter-output>
         </test-method> <!-- amazon -->
-        <test-method is-config="true" signature="logout()[pri:0, instance:Demo.AmazonTest@2e554a3b]" started-at="2025-09-24T09:39:57 IST" name="logout" finished-at="2025-09-24T09:39:57 IST" duration-ms="2" status="PASS">
+        <test-method is-config="true" signature="logout()[pri:0, instance:Demo.AmazonTest@710b18a6]" started-at="2025-09-24T12:00:22 IST" name="logout" finished-at="2025-09-24T12:00:22 IST" duration-ms="1" status="PASS">
           <reporter-output>
             <line>
               <![CDATA[logout]]>
             </line>
           </reporter-output>
         </test-method> <!-- logout -->
-        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:Demo.AmazonTest@2e554a3b]" started-at="2025-09-24T09:39:57 IST" name="closeBrowser" finished-at="2025-09-24T09:39:57 IST" duration-ms="487" status="PASS">
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:Demo.AmazonTest@710b18a6]" started-at="2025-09-24T12:00:22 IST" name="closeBrowser" finished-at="2025-09-24T12:00:23 IST" duration-ms="719" status="PASS">
           <reporter-output>
             <line>
               <![CDATA[closeBrowser]]>

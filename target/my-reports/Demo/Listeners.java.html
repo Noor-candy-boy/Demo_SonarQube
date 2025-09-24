@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Listeners.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Jacoco_SonarQube</a> &gt; <a href="index.source.html" class="el_package">Demo</a> &gt; <span class="el_source">Listeners.java</span></div><h1>Listeners.java</h1><pre class="source lang-java linenums">package Demo;
+
+
+import java.io.File;
+import java.util.Date;
+import java.util.Random;
+
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.testng.ITestContext;
+import org.testng.ITestListener;
+import org.testng.ITestResult;
+
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import com.aventstack.extentreports.reporter.configuration.Theme;
+
+<span class="nc" id="L21">public class Listeners extends BaseClass implements ITestListener {</span>
+
+	ExtentReports report; // Global variable
+	ExtentTest test;  // Global variable
+	
+	@Override
+	public void onTestStart(ITestResult result) { // amazon
+		// Step 3 : Create a test Method dusring the Execution 
+<span class="nc" id="L29">		test = report.createTest(result.getMethod().getMethodName());</span>
+		
+<span class="nc" id="L31">	}</span>
+
+	@Override
+	public void onTestSuccess(ITestResult result) {
+		// Step 4 : i need to declare its Pass the script
+<span class="nc" id="L36">		test.log(Status.PASS, result.getMethod().getMethodName()+&quot; - is Passed&quot;);  // Amazon - is Passed</span>
+<span class="nc" id="L37">	}</span>
+
+	@Override
+	public void onTestFailure(ITestResult result) {
+		
+		// step 5 : Create a Screenshot Folder / File &amp; declare where screnshot should sabe
+		
+<span class="nc" id="L44">		test.log(Status.FAIL, result.getMethod().getMethodName()+&quot; - is Failed&quot;);</span>
+<span class="nc" id="L45">		test.log(Status.FAIL, result.getThrowable());</span>
+		
+<span class="nc" id="L47">		String testName = result.getMethod().getMethodName(); // amazon</span>
+		
+<span class="nc" id="L49">		Random r = new Random();</span>
+<span class="nc" id="L50">		int num = r.nextInt(10000);</span>
+		
+<span class="nc" id="L52">		Date d = new Date();</span>
+		// System.out.println(d);		
+<span class="nc" id="L54">		String date[] = d.toString().split(&quot; &quot;);</span>
+<span class="nc" id="L55">		String month = date[1];</span>
+<span class="nc" id="L56">		String date1 = date[2];</span>
+<span class="nc" id="L57">		String time = date[3].replace(&quot;:&quot;, &quot;-&quot;);</span>
+<span class="nc" id="L58">		String year = date[5];</span>
+<span class="nc" id="L59">		String finalDate = date1+&quot; &quot;+month+&quot; &quot;+year+&quot; &quot;+time;</span>
+		
+<span class="nc" id="L61">		TakesScreenshot tss = (TakesScreenshot) driver;  // type</span>
+<span class="nc" id="L62">		File src = tss.getScreenshotAs(OutputType.FILE);</span>
+<span class="nc" id="L63">		File dest = new File(&quot;./screenshot/&quot;+testName+&quot;-&quot;+num+&quot;-&quot;+finalDate+&quot;.png&quot;);  // screenshot folder -&gt; Amazon.png + random + system</span>
+<span class="nc" id="L64">		String path = dest.getAbsolutePath(); // c:/Noor/user/ </span>
+		//     ./screenshot/screen.png
+		
+		try {
+<span class="nc" id="L68">			FileUtils.copyFile(src, dest);</span>
+<span class="nc" id="L69">			test.addScreenCaptureFromPath(path);</span>
+<span class="nc" id="L70">		}</span>
+		
+<span class="nc" id="L72">		catch(Exception e) {</span>
+<span class="nc" id="L73">			e.printStackTrace();</span>
+		}
+		
+<span class="nc" id="L76">	}</span>
+
+	@Override
+	public void onTestSkipped(ITestResult result) {
+		
+		// Step 6 : skip method name
+<span class="nc" id="L82">		test.log(Status.SKIP, result.getMethod().getMethodName()+&quot; - is Skipped&quot;);</span>
+<span class="nc" id="L83">		test.log(Status.SKIP, result.getThrowable());</span>
+<span class="nc" id="L84">	}</span>
+
+	@Override
+	public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
+		
+<span class="nc" id="L89">	}</span>
+
+	@Override
+	public void onTestFailedWithTimeout(ITestResult result) {
+		
+<span class="nc" id="L94">	}</span>
+
+	@Override
+	public void onStart(ITestContext context) {
+		// step 1 : ExtentReports Configuration
+		
+<span class="nc" id="L100">		Random r = new Random();</span>
+<span class="nc" id="L101">		int num = r.nextInt(10000);</span>
+		
+<span class="nc" id="L103">		Date d = new Date();</span>
+		// System.out.println(d);		
+<span class="nc" id="L105">		String date[] = d.toString().split(&quot; &quot;);</span>
+<span class="nc" id="L106">		String month = date[1];</span>
+<span class="nc" id="L107">		String date1 = date[2];</span>
+<span class="nc" id="L108">		String time = date[3].replace(&quot;:&quot;, &quot;-&quot;);</span>
+<span class="nc" id="L109">		String year = date[5];</span>
+<span class="nc" id="L110">		String finalDate = date1+&quot; &quot;+month+&quot; &quot;+year+&quot; &quot;+time;</span>
+		
+<span class="nc" id="L112">		ExtentSparkReporter htmlReport = new ExtentSparkReporter( new File(&quot;./ExtentReportsFile/ExtentReport-&quot;+num +&quot; &quot;+finalDate+&quot;.html&quot;));</span>
+<span class="nc" id="L113">		htmlReport.config().setDocumentTitle(&quot;ExtentReport - TestNG&quot;);</span>
+<span class="nc" id="L114">		htmlReport.config().setTheme(Theme.DARK);</span>
+<span class="nc" id="L115">		htmlReport.config().setReportName(&quot;Regression Testing&quot;);</span>
+		
+		// step 2 : Attached HTML / Newly Created File.html
+		
+<span class="nc" id="L119">		report = new ExtentReports();</span>
+<span class="nc" id="L120">		report.attachReporter(htmlReport);</span>
+<span class="nc" id="L121">		report.setSystemInfo(&quot;OS&quot;, &quot;Windows 10 Pro&quot;);</span>
+<span class="nc" id="L122">		report.setSystemInfo(&quot;Environment&quot;, &quot;Testing / QA&quot;);</span>
+<span class="nc" id="L123">		report.setSystemInfo(&quot;URL&quot;, &quot;Actitime / VTiger.com&quot;);</span>
+<span class="nc" id="L124">		report.setSystemInfo(&quot;Reporter Name&quot;, &quot;Veera&quot;);</span>
+<span class="nc" id="L125">		report.setSystemInfo(&quot;Support&quot;, &quot;Asma &amp; Yogini&quot;);</span>
+<span class="nc" id="L126">	}</span>
+
+	@Override
+	public void onFinish(ITestContext context) {
+		// Step 7 : flush
+<span class="nc" id="L131">		report.flush();</span>
+<span class="nc" id="L132">	}</span>
+
+	
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

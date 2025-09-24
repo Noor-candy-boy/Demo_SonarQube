@@ -8,4 +8,12 @@ mvn clean verify sonar:sonar \
   
   GitHub link - https://github.com/Noor-candy-boy/Demo_SonarQube.git
   
+  Mail ID	
+  noorucandyboy@gmail.com	
+  
+  User ID
+Noor-candy-boy
+  
+  
+  
   

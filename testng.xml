@@ -13,6 +13,6 @@
 			<class name="Demo.AmazonTest" />
 		</classes>
 	</test> <!--
-	Test -->
+	Test --> 
 </suite> <!--
 Suite -->

@@ -1,29 +1,33 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<!--	<properties>
+	<jacoco-maven-plugin-artifactId>jacoco-maven-plugin</jacoco-maven-plugin-artifactId>
+	</properties>-->
+
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>Jacoco_SonarQube</groupId>
 	<artifactId>Jacoco_SonarQube</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
 
-	<properties>
+	<!--		<properties>
 
-		<!-- Required -->
+		 Required 
 		<sonar.host.url>http://localhost:9000</sonar.host.url>
 		<sonar.login>your_sonarqube_token</sonar.login>
 
-		<!-- Optional -->
+		 Optional 
 		<sonar.projectKey>my-app</sonar.projectKey>
 		<sonar.projectName>My Application</sonar.projectName>
 		<sonar.projectVersion>1.0</sonar.projectVersion>
 
-		<!-- Reports -->
+		 Reports 
 		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
-		<sonar.jacoco.reportPaths>${project.basedir}/target/jacoco.exec</sonar.jacoco.reportPaths>
-		<sonar.junit.reportPaths>${project.basedir}/target/surefire-reports</sonar.junit.reportPaths>
+	<sonar.jacoco.reportPaths>${project.basedir}/target/jacoco.exec</sonar.jacoco.reportPaths>
+	<sonar.junit.reportPaths>${project.basedir}/target/surefire-reports</sonar.junit.reportPaths>
 
-	</properties>
+	</properties>-->
 
 
 	<build>
@@ -48,24 +52,64 @@
 				<version>3.10.0.2594</version> <!-- latest stable -->
 			</plugin>
 
+
+			<!-- New  -->
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.8.12</version>
+				<version>0.8.3</version>
 				<executions>
 					<execution>
+						<id>prepare-agent</id>
 						<goals>
 							<goal>prepare-agent</goal>
 						</goals>
 					</execution>
+
 					<execution>
 						<id>report</id>
 						<phase>verify</phase>
+						<!--<phase>prepare-package</phase>-->
 						<goals>
 							<goal>report</goal>
 						</goals>
+						<configuration>
+							<dataFile>${project.build.directory}/jacoco.exec</dataFile>
+							<outputDirectory>
+								${project.build.directory}/jacoco-report</outputDirectory>
+							<classDirectories>
+								<directory>${project.build.outputDirectory}</directory>
+							</classDirectories>
+							<sourceDirectories>
+								<directory>${project.basedir}/src/main/java</directory>
+							</sourceDirectories>
+						</configuration>
+					</execution>
+
+
+					<execution>
+						<id>post-unit-test</id>
+						<phase>test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+						<configuration>
+							<!-- Sets the path to the file which contains the
+							execution data -->
+							<dataFile>target/jacoco.exec</dataFile>
+							<!-- Sets the output directory for the code
+							cobverage report -->
+							<outputDirectory>target/my-reports</outputDirectory>
+						</configuration>
 					</execution>
 				</executions>
+
+				<configuration>
+					<systemPropertyVariable>
+						<jacoco-agent.destfile>target/jacoco.exec</jacoco-agent.destfile>
+					</systemPropertyVariable>
+				</configuration>
+
 			</plugin>
 
 
@@ -82,21 +126,24 @@
 			<version>5.1.0</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
+		<!--
+		https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
 		<dependency>
 			<groupId>io.github.bonigarcia</groupId>
 			<artifactId>webdrivermanager</artifactId>
 			<version>5.4.0</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+		<!--
+		https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
 			<version>4.25.0</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java 
+		<!--
+		https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java 
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
@@ -118,12 +165,7 @@
 			<version>2.0.5</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.jacoco/jacoco-maven-plugin -->
-		<dependency>
-			<groupId>org.jacoco</groupId>
-			<artifactId>jacoco-maven-plugin</artifactId>
-			<version>0.8.13</version>
-		</dependency>
+
 	</dependencies>
 
 
